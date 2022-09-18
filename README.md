@@ -1,7 +1,7 @@
 
 # React Ipod
 
-View this WebPage : https://omseervi098.github.io/IMDB_Clone/
+View this WebPage : [https://omseervi098.github.io/ipod-react/]
 
 
 
