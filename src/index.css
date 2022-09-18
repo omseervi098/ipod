@@ -25,15 +25,48 @@ code {
   object-position: center;
   border-radius: 10px;
 }
+.loading{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items:center;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid rgb(174, 174, 229);
+  border-right: 16px solid rgb(82, 111, 175);
+  border-bottom: 16px solid rgb(39, 44, 119);
+  border-left: 16px solid rgb(13, 36, 110);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 #song-img{
   width:120px;
   height:auto;
   object-fit:contain;
   border-radius: 10px;
-  box-shadow: 0 0 30px 0 rgba(247, 247, 247, 0.5);
+  box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.5);
+}
+.screen-music-instruction{
+  margin-top: -5px !important;
 }
 #audio{
-  background-color:rgb(255, 255, 255);
+  background-color:rgba(0, 0, 0, 0.571);
+  box-shadow: 0 0 10px 0 rgba(14, 14, 14, 0.5);
   width: 90%;
   border-radius: 10px;
 }
@@ -44,11 +77,25 @@ code {
 }
 .selected{
   border-radius: 10px ;
-  background-color: #61dafb;
+  background-color: #61dafb !important;
+}
+.song_selected{
+  border-radius: 10px;
+  background-color: #d9d9d9 !important;
+  /* animation */
+  transform: scalex(1.1);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(43, 43, 43) !important;
+  transition: all 0.3s ease-in-out;
 }
 .selected i{
   display: block;
   color: white;
+}
+.screen-container{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 .screen-menu{
   position:absolute;
@@ -62,12 +109,29 @@ code {
   background-color: rgb(204, 204, 204);
   border-radius: 10px !important;
 }
+
+.all-songs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:2px;
+  height: 100%;
+  width: 100%; 
+}
+.all-songs > div{
+  width: 90%;
+  color: white;
+  background-color: rgba(87, 86, 86, 0.5);
+  border-radius: 10px;
+  padding: 4px
+}
 h2{
   font: 400 1.3rem 'Roboto', sans-serif;
   color: white;
 }
 .menu-items{
-  
+  z-index: 4;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -91,6 +155,8 @@ h2{
   width: 100%;
   padding: 0 10px;
 }
+
+
 .buttons-container{
   display: flex;
   flex-direction: row;
@@ -98,6 +164,8 @@ h2{
   align-items: center;
   width: 100%;
   height: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .button{
   height:160px;
@@ -106,7 +174,6 @@ h2{
   background: #282c34;
   border: 1px solid #282c34;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 .button-inner{
   position: relative;
@@ -117,16 +184,17 @@ h2{
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  
 }
 .button-inner-circle{
+  position:relative;
   width: 50%;
 	height: 50%;
   border-radius: 50%;
   background: #282c34;
   border: 1px solid #282c34;
   cursor: pointer;
-  transition: all 0.3s ease;
+ 
 }
 .menu-btn{
   position: absolute;
@@ -199,4 +267,15 @@ h2{
 }
 .prev-btn:hover{
   color: #61dafb;
+}
+.button-circle{
+  background-color: #61dafb;
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background-color: rgba(3, 217, 255,1);
+  top:20px;
+  margin-top: 1px;
+ 
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import 'react-h5-audio-player/lib/styles.css';
 class Music extends React.Component
 {
     componentDidMount()
@@ -31,8 +30,9 @@ class Music extends React.Component
                 <div style={{marginTop:20}}>
                    
                     <audio autoPlay="autoplay" controls id="audio" src={Songs[songidx].url}></audio>
+                    
                 </div>
-                <div className='screen-music-instruction'>
+                <div className='screen-music-instruction text-light'>
                     <p>
                         Press "<i className="fas fa-play"></i>/<i className="fas fa-pause"></i>" button to play/pause.
                     </p>

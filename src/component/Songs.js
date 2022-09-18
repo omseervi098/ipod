@@ -38,22 +38,21 @@ class Songs extends React.Component{
         }
         return (this.state.loading?
             <div className="loading">
-                <h1>Loading..</h1>
+                <h1 className="text-light">Loading...</h1>
                 <div className="loader"></div>
-                <p>This data is fetched from firestore</p>
+                <p className="text-light">This data is fetched from firestore</p>
             </div>
             :
-            <div className="all-songs">
+            <div className="all-songs ">
                 {this.state.all_songs_list.map((song,idx)=>{
-                    
                     return (
-                        <div className={this.props.current_music_selected===idx?'selected':''}>
+                        <div className={this.props.current_music_selected===idx?'song_selected':''}>
                             {song.name}
                         </div>                    
                     )
                 })}
-                <div className="movebackward">
-                    Use <i className="fas fa-arrow-left"></i> to move backward
+                <div className="movebackward bg-danger bg-gradient text-dark">
+                   Use <i className="fas fa-backward"></i> and <i className="fas fa-forward"></i> to navigate
                 </div>
             </div>
         );

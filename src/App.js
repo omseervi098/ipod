@@ -11,7 +11,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.temp_angle = 0;
-    // this.temp_selected=0;
+    // this.temp_selected=0; 
+    this.total_angle = 0;
+    this.background = ['https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=996&t=st=1663478552~exp=1663479152~hmac=f7ca1f8847b6ad1f54c6871ea34bf0dc3fb7e0e1d03179c87b39ff9667f918bc','https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1614149162883-504ce4d13909?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWMlMjBhcHB8ZW58MHx8MHx8&w=1000&q=80'];
     this.state = {
       options: ["Games", "Music", "Settings", "coverflow"],
       selected: 1,
@@ -25,18 +27,23 @@ class App extends React.Component {
   }
   componentDidMount() {
     var containerElement =
-      document.getElementsByClassName("buttons-container")[0];
+      document.getElementsByClassName("button")[0];
     var zt = new ZingTouch.Region(containerElement);
+    var innercircle = document.getElementsByClassName('button-inner-circle');
     zt.bind(containerElement, "rotate", (e) => {
+      //rotate the wheel
       let dist = e.detail.distanceFromLast;
+      this.total_angle += dist;
       this.temp_angle += dist;
-      if (this.temp_angle > 90) {
+      //rotate inner circle so that it rotates with the wheel
+      innercircle[0].style.transform = `rotate(${this.total_angle}deg)`;
+      if (this.temp_angle > 120) {
         this.setState({
           selected: (this.state.selected + 1) % this.state.options.length,
         });
         this.temp_angle = 0;
       }
-      if (this.temp_angle < -90) {
+      if (this.temp_angle < -120) {
         let selected = this.state.selected - 1;
         if (selected < 0) selected = this.state.options.length - 1;
         this.setState({ selected });
@@ -176,7 +183,7 @@ class App extends React.Component {
     }
   };
   selectClicked = () => {
-    console.log(this.state.currently_playing);
+  
     if (
       this.state.currently_playing &&
       document
@@ -223,9 +230,22 @@ class App extends React.Component {
     });
   };
   render() {
+    //select random background
+    let background;
+    if(!this.state.currently_playing &&this.state.showPage!==0){
+      if(this.state.options.length===3){
+     background = this.background[0];
+      }else if(this.state.options.length===4){
+        background = this.background[2];
+      }
+    }else if(this.state.showPage===0){
+      background = this.background[3];
+    }
     return (
       <div className="App">
         <Screen
+          // select random background
+          background={background}
           selectedOption={this.state.selected}
           options={this.state.options}
           showPage={this.state.showPage}

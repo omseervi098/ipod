@@ -1,11 +1,16 @@
 import React from 'react';
 
 const Buttons=(props)=>{
+    
     return (
         <div className="buttons-container bg-info px-5 py-2">
             <div className="button bg-light">
+            
                 <div className="button-inner">
-                    <div className="button-inner-circle" onClick={props.selectClicked}></div>
+                    <div className="button-inner-circle" onClick={props.selectClicked}>
+                        <div className="button-circle"></div>
+                    </div>
+                    
                     <div className="menu-btn">
                         <i className="fas fa-bars" onClick={props.menuClicked}></i>
                     </div>
