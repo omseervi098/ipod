@@ -1,3 +1,42 @@
+
+# React Ipod
+
+View this WebPage : [https://omseervi098.github.io/ipod-react/]
+
+
+
+
+
+
+
+## Tech Stack
+
+**Client:** ReactJs, Bootstrap
+
+Firebase (to store songs)
+
+
+
+## Screenshots
+
+![ScreenShot](https://raw.github.com/omseervi098/ipod/master/public/1.png)
+
+![ScreenShot](https://raw.github.com/omseervi098/ipod/master/public/2.png)
+
+![ScreenShot](https://raw.github.com/omseervi098/ipod/master/public/3.png)
+
+![ScreenShot](https://raw.github.com/omseervi098/ipod/master/public/4.png)
+
+![ScreenShot](https://raw.github.com/omseervi098/ipod/master/public/5.png)
+
+## Features
+
+- Used Firebase to store songs as it provide high speed storage
+- Audio Waveform animation and action menu lighten up when song is played
+- more songs can be easily added to firebase
+- implemented circular menu using zingtouch library
+ 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
