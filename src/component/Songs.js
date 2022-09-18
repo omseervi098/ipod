@@ -2,6 +2,7 @@ import React from "react";
 import firebase from 'firebase/compat/app';
 import PlaySong from './PlaySong';
 import 'firebase/compat/firestore';
+
 class Songs extends React.Component{
     constructor(){
         super();
@@ -14,8 +15,7 @@ class Songs extends React.Component{
     componentDidMount(){
         this.db.collection('songs').onSnapshot((snapshot)=>{
             let all_songs_list=[];
-            //download all songs using getDownloadURL()
-        
+            //getting the data from firestore and putting it into state
             snapshot.forEach((doc)=>{
 
                 
@@ -29,7 +29,7 @@ class Songs extends React.Component{
     }
     render(){
         if(this.props.songIdx!==-1){
-            
+            //if song index is not -1 then we are on we will play the song
             return <PlaySong 
             songidx={this.props.songIdx}
             Songs={this.state.all_songs_list}
@@ -46,7 +46,7 @@ class Songs extends React.Component{
             <div className="all-songs ">
                 {this.state.all_songs_list.map((song,idx)=>{
                     return (
-                        <div className={this.props.current_music_selected===idx?'song_selected':''}>
+                        <div key={idx} className={this.props.current_music_selected===idx?'song_selected':''}>
                             {song.name}
                         </div>                    
                     )

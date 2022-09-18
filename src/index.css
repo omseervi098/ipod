@@ -11,19 +11,48 @@ body {
   justify-content: center !important;
   height: 100vh !important;
   background: #282c34 !important; 
+  
 }
 .App{
   width:300px;
+  
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.song-image{
-  object-fit: cover;
-  object-position: center;
+/* Screen Css */
+.screen-container{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: rgb(89, 188, 201) !important;
+}
+.screen{
+  position: relative;
+  height: 280px;
+  width: auto;
+  
+}
+
+/* Loader Animation */
+.selected{
+  border-radius: 10px ;
+  background-color: #025c74 !important;
+  color:white;
+}
+.song_selected{
   border-radius: 10px;
+  background-color: #d9d9d9 !important;
+  /* animation */
+  transform: scalex(1.1);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(43, 43, 43) !important;
+  transition: all 0.3s ease-in-out;
+}
+.selected i{
+  display: block;
+  color: white;
 }
 .loading{
   height: 100%;
@@ -54,6 +83,12 @@ code {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* Song Image */
+.song-image{
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
 #song-img{
   width:120px;
   height:auto;
@@ -70,34 +105,9 @@ code {
   width: 90%;
   border-radius: 10px;
 }
-.screen{
-  position: relative;
-  height: 250px;
-  width: auto;
-}
-.selected{
-  border-radius: 10px ;
-  background-color: #61dafb !important;
-}
-.song_selected{
-  border-radius: 10px;
-  background-color: #d9d9d9 !important;
-  /* animation */
-  transform: scalex(1.1);
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: rgb(43, 43, 43) !important;
-  transition: all 0.3s ease-in-out;
-}
-.selected i{
-  display: block;
-  color: white;
-}
-.screen-container{
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
+/* Menu page css */
 .screen-menu{
+  z-index: 1;
   position:absolute;
   display: flex;
   flex-direction: row;
@@ -106,10 +116,36 @@ code {
   height: 100%;
   width: 50%;
   margin:0 !important;
-  background-color: rgb(204, 204, 204);
+  background-color: rgb(196, 223, 240);
   border-radius: 10px !important;
 }
 
+.menu-items{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  height: 100%;
+  font-size:1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+.menu-items >div{
+  /* border-bottom: 1px solid black; */
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}.item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 10px;
+  transition: all 0.3s ease-in-out;
+}
+/* All Songs page */
 .all-songs{
   display: flex;
   flex-direction: column;
@@ -130,51 +166,46 @@ h2{
   font: 400 1.3rem 'Roboto', sans-serif;
   color: white;
 }
-.menu-items{
-  z-index: 4;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  /* align-items: center; */
-  height: 100%;
-  font-size:1.1rem;
-  font-weight: bold;
-}
-.menu-items >div{
-  
-  /* border-bottom: 1px solid black; */
-  width: 100%;
-}.item{
-  
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 0 10px;
-}
 
-
+/* Button Container */
 .buttons-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height:240px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.gif{
+  transition: all 0.3s ease-in-out;
+}
+.gif img{
+  position: absolute;
+  width:100%;
+  top:0;
+  left:0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  
 }
 .button{
   height:160px;
   width: 160px;
+  /* margin-top: 25px; */
   border-radius: 50%;
   background: #282c34;
   border: 1px solid #282c34;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.995);
+  color: rgb(227, 224, 224);
+  transition: all 0.3s ease-in-out;
+  /* background-color: rgba(134, 134, 134, 0.5); */
 }
+
 .button-inner{
   position: relative;
   height: 100%;
@@ -184,8 +215,9 @@ h2{
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  transition: all 0.3s ease-in-out;
 }
+
 .button-inner-circle{
   position:relative;
   width: 50%;
@@ -194,7 +226,7 @@ h2{
   background: #282c34;
   border: 1px solid #282c34;
   cursor: pointer;
- 
+  transition: all 0.3s ease-in-out;
 }
 .menu-btn{
   position: absolute;
@@ -209,7 +241,7 @@ h2{
 	outline: none;
 	border: none;
 	background-color: transparent;
-	color: rgb(78, 78, 78);
+  
 }
 .menu-btn:hover{
   color: #61dafb;
@@ -227,7 +259,6 @@ h2{
 	outline: none;
 	border: none;
 	background-color: transparent;
-	color: rgb(78, 78, 78);
 }
 .play-btn:hover{
   color: #61dafb;
@@ -245,7 +276,6 @@ h2{
   outline: none;
   border: none;
   background-color: transparent;
-  color: rgb(78, 78, 78);
 }
 .next-btn:hover{
   color: #61dafb;
@@ -263,7 +293,6 @@ h2{
   outline: none;
   border: none;
   background-color: transparent;
-  color: rgb(78, 78, 78);
 }
 .prev-btn:hover{
   color: #61dafb;
@@ -278,4 +307,97 @@ h2{
   top:20px;
   margin-top: 1px;
  
+}
+/* Animation for colouring btn*/
+@keyframes background-gradient-animation {
+	0% {
+		background-color: #f07293;
+	}
+	20% {
+		background-color: #f75990;
+	}
+	40% {
+		background-color: #fff685;
+	}
+	60% {
+		background-color: #600d87;
+	}
+	80% {
+		background-color: #0049b7;
+	}
+	100% {
+		background-color: #ff1d58;
+	}
+}
+
+.colored {
+    transition:background-color ease-in-out 0.2s;
+	animation-name: background-gradient-animation;
+	animation-duration: 5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	color: white;
+    opacity: 0.9;
+}
+.colored svg {
+	color: white;
+}
+.colored .center-circle {
+	background-color: black;
+}
+/* Css for empty pages */
+.screen-game>div
+{
+
+  font-size:140px;
+  color:red;
+}
+.screen-game h1
+{
+  color:white;
+    margin:0px;
+}
+
+.screen-setting>h1
+{
+  color:white;
+    margin:0px;
+}
+.screen-setting>div
+{
+    font-size:150px;
+    color:rgb(134, 134, 134);
+}
+
+.screen-coverflow>h1
+{       
+  color:white;
+    margin:0px;
+}
+.screen-coverflow>div
+{
+    font-size:150px;
+    color:rgb(255, 145, 0);
+}
+
+.artists-screen>h1
+{
+  color:white;
+    margin:0px;
+}
+.artists-screen>div
+{
+    font-size:140px;
+    color:rgb(174, 0, 255);
+}
+
+.albums-screen>h1
+{
+  color:white;
+    margin:0px;
+}
+.albums-screen>div
+{
+    font-size:140px;
+    color:rgb(174, 0, 255);
 }

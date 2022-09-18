@@ -10,13 +10,19 @@ import $ from "jquery";
 class App extends React.Component {
   constructor() {
     super();
+    //initial state
     this.temp_angle = 0;
-    // this.temp_selected=0; 
     this.total_angle = 0;
-    this.background = ['https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=996&t=st=1663478552~exp=1663479152~hmac=f7ca1f8847b6ad1f54c6871ea34bf0dc3fb7e0e1d03179c87b39ff9667f918bc','https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1614149162883-504ce4d13909?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWMlMjBhcHB8ZW58MHx8MHx8&w=1000&q=80'];
+    //background images
+    this.background = [
+      "https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=996&t=st=1663478552~exp=1663479152~hmac=f7ca1f8847b6ad1f54c6871ea34bf0dc3fb7e0e1d03179c87b39ff9667f918bc",
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+      "https://images.unsplash.com/photo-1614149162883-504ce4d13909?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+      "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWMlMjBhcHB8ZW58MHx8MHx8&w=1000&q=80",
+    ];
     this.state = {
       options: ["Games", "Music", "Settings", "coverflow"],
-      selected: 1,
+      selected: 0,
       showPage: -1,
       general_options: ["Games", "Music", "Settings", "coverflow"],
       music_options: ["Songs", "Artists", "Albums"],
@@ -26,24 +32,22 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    var containerElement =
-      document.getElementsByClassName("button")[0];
+    var containerElement = document.getElementsByClassName("button-inner")[0];
     var zt = new ZingTouch.Region(containerElement);
-    var innercircle = document.getElementsByClassName('button-inner-circle');
+    var innercircle = document.getElementsByClassName("button-inner-circle");
     zt.bind(containerElement, "rotate", (e) => {
-      //rotate the wheel
       let dist = e.detail.distanceFromLast;
       this.total_angle += dist;
       this.temp_angle += dist;
       //rotate inner circle so that it rotates with the wheel
       innercircle[0].style.transform = `rotate(${this.total_angle}deg)`;
-      if (this.temp_angle > 120) {
+      if (this.temp_angle > 70) {
         this.setState({
           selected: (this.state.selected + 1) % this.state.options.length,
         });
         this.temp_angle = 0;
       }
-      if (this.temp_angle < -120) {
+      if (this.temp_angle < -70) {
         let selected = this.state.selected - 1;
         if (selected < 0) selected = this.state.options.length - 1;
         this.setState({ selected });
@@ -54,19 +58,30 @@ class App extends React.Component {
   menuCliked = () => {
     let screenMenu =
       document.getElementsByClassName("screen-menu")[0].classList;
-
+    //Toggle menu
     if (screenMenu.contains("d-none")) {
       $(".screen-menu").removeClass("d-none");
     } else $(".screen-menu").addClass("d-none");
   };
   playClicked = () => {
-    if($('#audio')[0]!==undefined){
-      if($('#audio')[0].paused){
-        $('#audio')[0].play();
+    if ($("#audio")[0] !== undefined) {
+      if ($("#audio")[0].paused) {
+        //if audio is paused then play it
+        $("#audio")[0].play();
+        $(".button-inner").addClass("colored");
+        $(".buttons-container").css(
+          "background-image",
+          "url(http://res.cloudinary.com/dvkxfgprc/image/upload/c_scale,w_440/v1511430406/giphy_8_ww3jdz.gif)"
+        );
         return;
       }
-      $('#audio')[0].pause();
-  
+      //else pause it
+      $("#audio")[0].pause();
+      $(".button-inner").removeClass("colored");
+      $(".buttons-container").css(
+        "background-image",
+        "url(https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000)"
+      );
     }
   };
   nextClicked = () => {
@@ -76,8 +91,8 @@ class App extends React.Component {
           .getElementsByClassName("screen-menu")[0]
           .classList.contains("d-none")
       ) {
-        if ($("#audio")[0] !== undefined){
-          
+        //if menu is not visible and changing song when playing
+        if ($("#audio")[0] !== undefined) {
           if (this.state.song_idx === 5) {
             this.setState({
               song_idx: 0,
@@ -85,13 +100,13 @@ class App extends React.Component {
             return;
           }
           if (this.state.song_idx !== 5) {
-          this.setState({
-            song_idx: this.state.song_idx + 1,
-          });
-          return;
+            this.setState({
+              song_idx: this.state.song_idx + 1,
+            });
+            return;
           }
         }
-       }
+      }
     }
 
     if (
@@ -100,30 +115,25 @@ class App extends React.Component {
         .getElementsByClassName("screen-menu")[0]
         .classList.contains("d-none")
     )
+      //if menu is visible and it is music menu
       this.setState({
         options: this.state.general_menu,
         song_idx: -1,
         selected: 0,
       });
     if (
-      document
-        .getElementsByClassName("screen-menu")[0]
-        .classList.contains("d-none")
-    ) {
-      if (this.state.options.length === 3) {
-        if (this.state.showPage === 0) {
-          if (this.state.current_music_selected === 5)
-            this.setState({
-              current_music_selected: 0,
-              
-            });
-          else
-            this.setState({
-              current_music_selected: this.state.current_music_selected + 1,
-              
-            });
-        }
-      }
+      document.getElementsByClassName("screen-menu")[0].classList.contains("d-none") &&
+      this.state.options.length === 3 &&
+      this.state.showPage === 0) 
+    {// if i am on all songs page 
+      if (this.state.current_music_selected === 5)
+        this.setState({
+          current_music_selected: 0,
+        });
+      else
+        this.setState({
+          current_music_selected: this.state.current_music_selected + 1,
+        });
     }
   };
   prevClicked = () => {
@@ -132,9 +142,8 @@ class App extends React.Component {
         document
           .getElementsByClassName("screen-menu")[0]
           .classList.contains("d-none")
-      ) {
+      ) {//if menu is not visible and changing song when playing
         if ($("#audio")[0] !== undefined)
-         
           if (this.state.song_idx === 0) {
             this.setState({
               song_idx: 5,
@@ -155,11 +164,10 @@ class App extends React.Component {
       !document
         .getElementsByClassName("screen-menu")[0]
         .classList.contains("d-none")
-    )
+    )//if menu is visible and it is music menu
       this.setState({
         options: this.state.general_options,
         song_idx: -1,
-        selected: 0,
       });
     if (
       document
@@ -169,6 +177,7 @@ class App extends React.Component {
       if (this.state.options.length === 3) {
         if (this.state.showPage === 0) {
           if (this.state.current_music_selected === 0)
+          //if i am on all songs page
             this.setState({
               current_music_selected: 5,
               song_idx: -1,
@@ -183,16 +192,17 @@ class App extends React.Component {
     }
   };
   selectClicked = () => {
-  
     if (
       this.state.currently_playing &&
       document
         .getElementsByClassName("screen-menu")[0]
         .classList.contains("d-none")
     ) {
+      //if i am on currently playing page then click on select will make no sense
       return;
     }
     if (this.state.selected === 1 && this.state.options.length === 4) {
+      //If i am on general menu and i select music
       this.setState({
         options: this.state.music_options,
         selected: 0,
@@ -211,6 +221,7 @@ class App extends React.Component {
         this.state.showPage === 0 &&
         this.state.song_idx === -1
       ) {
+        //if i am on music menu and i select a song
         this.setState({
           song_idx: this.state.current_music_selected,
         });
@@ -230,15 +241,15 @@ class App extends React.Component {
     });
   };
   render() {
-    //select random background
+    //select background image
     let background;
-    if(!this.state.currently_playing &&this.state.showPage!==0){
-      if(this.state.options.length===3){
-     background = this.background[0];
-      }else if(this.state.options.length===4){
+    if (!this.state.currently_playing && this.state.showPage !== 0) {
+      if (this.state.options.length === 3) {
+        background = this.background[0];
+      } else if (this.state.options.length === 4) {
         background = this.background[2];
       }
-    }else if(this.state.showPage===0){
+    } else if (this.state.showPage === 0) {
       background = this.background[3];
     }
     return (
@@ -260,6 +271,7 @@ class App extends React.Component {
           nextClicked={this.nextClicked}
           prevClicked={this.prevClicked}
           selectClicked={this.selectClicked}
+          currentlyPlaying={this.state.currently_playing}
         />
       </div>
     );
