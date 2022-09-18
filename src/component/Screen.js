@@ -8,7 +8,13 @@ import Artists from "./Artists";
 import Albums from "./Albums";
 const Screen = (props) => {
   return (
-    <div className="screen-container p-2">
+    <div className="screen-container pt-2 px-2"
+    style={
+      {
+        background:"url('https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000')"
+      }
+    }
+    >
       <div
         className="screen rounded-3"
         style={{

@@ -17,7 +17,7 @@ class App extends React.Component {
     this.background = [
       "https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=996&t=st=1663478552~exp=1663479152~hmac=f7ca1f8847b6ad1f54c6871ea34bf0dc3fb7e0e1d03179c87b39ff9667f918bc",
       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-      "https://images.unsplash.com/photo-1614149162883-504ce4d13909?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+      "https://img.freepik.com/premium-photo/wireless-sound-audio-headphones-colored-background-music-app-listening-podcasts-radio-audiobooks-concept-high-quality-photo_90380-3136.jpg",
       "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWMlMjBhcHB8ZW58MHx8MHx8&w=1000&q=80",
     ];
     this.state = {
@@ -253,7 +253,11 @@ class App extends React.Component {
       background = this.background[3];
     }
     return (
-      <div className="App">
+      <div className="App"
+      style={{
+        
+      }}
+      >
         <Screen
           // select random background
           background={background}

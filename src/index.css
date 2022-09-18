@@ -10,7 +10,8 @@ body {
   align-items: center !important;
   justify-content: center !important;
   height: 100vh !important;
-  background: #282c34 !important; 
+  background: url('https://img.freepik.com/premium-photo/black-stone-texture-dark-slate-background-top-view_88281-1206.jpg?w=2000') !important; 
+  background-size: cover !important;
   
 }
 .App{
@@ -199,7 +200,7 @@ h2{
   border-radius: 50%;
   background: #282c34;
   border: 1px solid #282c34;
-  cursor: pointer;
+  
   background-color: rgba(0, 0, 0, 0.995);
   color: rgb(227, 224, 224);
   transition: all 0.3s ease-in-out;
@@ -223,9 +224,10 @@ h2{
   width: 50%;
 	height: 50%;
   border-radius: 50%;
-  background: #282c34;
+  background: rgb(3, 79, 32);
   border: 1px solid #282c34;
   cursor: pointer;
+  
   transition: all 0.3s ease-in-out;
 }
 .menu-btn{
@@ -241,6 +243,7 @@ h2{
 	outline: none;
 	border: none;
 	background-color: transparent;
+  cursor: pointer;
   
 }
 .menu-btn:hover{
@@ -258,6 +261,7 @@ h2{
 	font-size: 30px;
 	outline: none;
 	border: none;
+  cursor: pointer;
 	background-color: transparent;
 }
 .play-btn:hover{
@@ -269,6 +273,7 @@ h2{
   height: 50%;
   width: 25%;
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   border-radius: 0px 37% 37% 0%;
@@ -285,6 +290,7 @@ h2{
   left: 0px;
   height: 50%;
   width: 25%;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,11 +303,15 @@ h2{
 .prev-btn:hover{
   color: #61dafb;
 }
+.button-inner-circle{
+  cursor: pointer;
+}
 .button-circle{
   background-color: #61dafb;
   position: absolute;
   height: 22px;
   width: 22px;
+  
   border-radius: 50%;
   background-color: rgba(3, 217, 255,1);
   top:20px;
