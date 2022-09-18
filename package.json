@@ -1,7 +1,7 @@
 {
   "name": "ipod",
   "version": "0.1.0",
-  "homepage": "https://localhost:3001",
+  "homepage": "https://localhost:5500",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
